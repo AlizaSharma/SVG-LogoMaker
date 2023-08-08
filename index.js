@@ -1,22 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const [Circle, Triangle, Square] = require('./lib/shapes');
-
-const triangle = new Triangle(answers.text, answers.color, answers.textColor)
-shape.render();
-const circle = new Circle(answers.text, answers.color, answers.textColor)
-shape.render();
-const square = new Square(answers.text, answers.color, answers.textColor)
-shape.render();
-
-let shapeSelect; 
-if(answers.shape === "Triangle"){
-    shapeSelect = new Triangle();
-} else if (answers.shape === "Circle"){
-    shapeSelect = new Circle();
-} else if (answers.shape === "Square"){
-    shapeSelect = new Square();
-}
+const {Circle, Triangle, Square} = require('./lib/shapes');
 
 function init(){
 
@@ -34,26 +18,40 @@ inquirer
     },
 
     {type: 'input',
-     message:'what is your svg text?',
      name: 'text',
+     message:'what is your svg text?',
+     
     }, 
 
     {type: 'input',
-     message: 'what is your desired textColor?',
      name: 'textColor',
+     message: 'what is your desired textColor?',
+    
 
     },
 
 ])
 .then((answers) => {
-    writeToFile("logo.svg", answers);
-
+let shapeSelect; 
+if(answers.shape === "triangle"){
+    shapeSelect = new Triangle(answers.text, answers.color, answers.textColor);
+} else if (answers.shape === "circle"){
+    shapeSelect = new Circle(answers.text, answers.color, answers.textColor);
+} else if (answers.shape === "square"){
+    shapeSelect = new Square(answers.text, answers.color, answers.textColor);
+} 
+console.log(shapeSelect)
+writeToFile(`./examples/${answers.shape}.svg`, shapeSelect.render());
 })
+
+
+
+}
+
 function writeToFile(fileName, data){
     fs.writeFile(fileName, data, 
         (err) => 
         err ? console.error(err) : console.log('svg success!'))
-}
 }
 
 init();
