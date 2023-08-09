@@ -12,7 +12,7 @@ The  Git Hub Repo [URL](https://github.com/AlizaSharma/SVG-LogoMaker).
 
 See example below of expected outcome:
 
-![SVG Logo Example](./assets/10-oop-homework-demo.png)
+![SVG Logo Expected Outcome](./assets/10-oop-homework-demo.png)
 
 ## Questions 
 If questions arise on the project, please contact alize.sharma12@gmail.com. 
